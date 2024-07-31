@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    background-size: 100% 100%;
+}
+
+.uncompleted p{
+    color: #afa7a7;
+    text-decoration: line-through;
+  }
+  
+.comp{
+    background-color: #6ced6c;
+}
+
+.comp:hover{
+    background-color: #00dd19;
+}
+
+.del{
+    background-color: #ff4e4e;
+}
+
+.del:hover{
+    background-color: #f80707;
+}

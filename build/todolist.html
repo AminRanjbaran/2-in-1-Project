@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-todolistlight bg-contain h-screen dark:bg-todolistdark">
+    <div class="container flex flex-col mx-auto 2xl:max-w-7xl">
+        <h1 class="text-5xl text-center mt-10 mx-auto dark:text-gray-300">Todo List App</h1>
+        <h3 class="colorp text-2xl text-center mt-7 dark:text-gray-400">Choose your todo card background color : <input type="color" name="" id="bgChoose" class="h-10 w-24 rounded-l"></h3>
+        <div class="form-new-todo flex flex-col sm:basis-3/5 mt-10 place-content-center">
+            <p class="text-2xl text-cyan-500 sm:text-start text-center ">Add Todo Item</p>
+            <input type="text" class="mt-5 bg-purple-200 border-purple-800 border-4 h-20 rounded-lg p-5 text-2xl outline-none dark:bg-white" placeholder="Todo..." id="todoInput">
+        </div>
+        <div>
+            <button id="addButton" class="ml-7 mt-8 p-5 bg-blue-800 rounded-md text-white hover:bg-blue-400 hover:text-black">Add Todo</button>
+            <button id="clearButton" class="ml-5 mt-8 p-5 bg-red-600 rounded-md text-white hover:bg-red-400 hover:text-black">Clear All Todos</button>
+        </div>
+        <h2 class="text-4xl mt-8 sm:text-start text-center dark:text-gray-300">Todo List</h2>
+        <ul class="todoList mb-10">
+
+        </ul>
+    </div>
+    <script type="text/javascript" src="../js/todolist.js"></script>
+</body>
+</html>
