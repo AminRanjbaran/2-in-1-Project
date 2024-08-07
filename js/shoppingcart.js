@@ -14,15 +14,15 @@ let mobileMenu = ()=> {
 document.addEventListener('DOMContentLoaded', mobileMenu)
 
 let allProducts = [
-    { id: 1, title: 'Football Ball', price: 66, img: '../img/product 1.jpg', count: 1 },
-    { id: 2, title: 'Volleyball Ball', price: 59, img: '../img/product 2.jpg', count: 1 },
-    { id: 3, title: 'Basketball', price: 57.42, img: '../img/product 3.jpg', count: 1 },
-    { id: 4, title: 'Ping Pong Racket', price: 86, img: '../img/product 4.jpg', count: 1 },
-    { id: 5, title: 'Tennis Racket', price: 95, img: '../img/product 5.jpg', count: 1 },
-    { id: 6, title: 'Badminton Racket', price: 38, img: '../img/product 6.jpg', count: 1 },
-    { id: 7, title: 'Billiard Cue', price: 23, img: '../img/product 7.jpg', count: 1 },
-    { id: 8, title: 'Golf Stick', price: 28, img: '../img/product 8.jpg', count: 1 },
-    { id: 9, title: 'Bowling Ball', price: 40, img: '../img/product 9.jpg', count: 1 }
+    { id: 1, title: 'Football Ball', price: 66, img: '../img/product 1.jpg', count: 0 },
+    { id: 2, title: 'Volleyball Ball', price: 59, img: '../img/product 2.jpg', count: 0 },
+    { id: 3, title: 'Basketball', price: 57.42, img: '../img/product 3.jpg', count: 0 },
+    { id: 4, title: 'Ping Pong Racket', price: 86, img: '../img/product 4.jpg', count: 0 },
+    { id: 5, title: 'Tennis Racket', price: 95, img: '../img/product 5.jpg', count: 0 },
+    { id: 6, title: 'Badminton Racket', price: 38, img: '../img/product 6.jpg', count: 0 },
+    { id: 7, title: 'Billiard Cue', price: 23, img: '../img/product 7.jpg', count: 0 },
+    { id: 8, title: 'Golf Stick', price: 28, img: '../img/product 8.jpg', count: 0 },
+    { id: 9, title: 'Bowling Ball', price: 40, img: '../img/product 9.jpg', count: 0 }
 ]
 
 let userBasket = []
@@ -58,7 +58,7 @@ allProducts.forEach(function (product) {
     prodcutAddButton.innerHTML = 'Add to cart'
     prodcutAddButton.className = 'sm:text-xl text-l p-3 rounded-md text-black hover:text-white bg-blue-400 hover:bg-blue-800 dark:text-white dark:hover:text-black dark:hover:bg-blue-400 dark:bg-blue-800'
     prodcutAddButton.addEventListener('click', function () {
-        addProductToBasketArray(product.id)
+            addProductToBasketArray(product.id)
     })
 
     productDetailsContainer.append(productPriceP, prodcutAddButton)
@@ -71,15 +71,25 @@ allProducts.forEach(function (product) {
 shopItemsContainer.append(productsFragment)
 
 function addProductToBasketArray(productId) {
+    let existingProduct = userBasket.find(function (product) {
+        return product.id === productId;
+    });
 
-    let mainProduct = allProducts.find(function (product) {
-        return product.id === productId
-    })
-
-    userBasket.push(mainProduct)
-
-    basketProductsGenerator(userBasket)
-    calcTotalPrice(userBasket)
+    if (existingProduct) {
+        existingProduct.count += 1;
+    } 
+    
+    else {
+        let mainProduct = allProducts.find(function (product) {
+            return product.id === productId;
+        });
+        
+        mainProduct.count = 1;
+        userBasket.push(mainProduct);
+    }
+    
+    basketProductsGenerator(userBasket);
+    calcTotalPrice(userBasket);
 }
 
 function basketProductsGenerator(userBasketArray) {
@@ -125,6 +135,7 @@ function basketProductsGenerator(userBasketArray) {
         basketProductRemoveBtn.addEventListener('click', function () {
             removeProductFromBasket(product.id)
             updateProductCount(product.id, basketProductInput.value)
+            basketProductInput.value = 0
         })
 
         basketProductInputsContainer.append(basketProductInput, basketProductRemoveBtn)
